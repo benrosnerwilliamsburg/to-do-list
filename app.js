@@ -1,9 +1,10 @@
 function newItem() {
-    console.log("Inside newItem")
+    console.log("Inside newItem");
 }
 
 document.body.onkeyup = function(e) {
     if (e.keyCode = 13) {
         console.log("enter clicked")
+        newItem();
     }
-  }
+  };
