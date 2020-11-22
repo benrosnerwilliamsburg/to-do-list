@@ -1,7 +1,19 @@
+const storage = localStorage.getItem('StorageKey');
+
+if(storage !== null) {
+    const data = JSON.parse(storage);
+    loadData(data);
+    const id = data.length;
+}
+else {
+    id = 0;
+    data = [];
+}
+
 function newItem() {
-    let item = document.getElementById("input").value;
-    let ul = document.getElementById("list");
-    let li = document.createElement("li");
+    const item = document.getElementById("input").value;
+    const ul = document.getElementById("list");
+    const li = document.createElement("li");
     li.appendChild(document.createTextNode("- " + item));
     ul.appendChild(li);
 
@@ -13,7 +25,15 @@ function newItem() {
 
 document.body.onkeyup = function(e) {
     if (e.keyCode == 13) {
-        newItem();
+        const todo = document.getElementById("input").value;
+        newItem(todo, false, id);
+        data.push({
+            name: todo,
+            trash: false,
+            id: id
+        });
+        id = id + 1
+       
     }
   };
 
