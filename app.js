@@ -2,6 +2,12 @@ function newItem() {
     console.log("Inside newItem");
     let item = document.getElementById("input").value;
     console.log(item)
+
+    const ul = document.getElementById("list");
+
+    const li = document.createElement("li");
+
+    li.appendChild(document.createTextNode("- " + item));
 }
 
 document.body.onkeyup = function(e) {
