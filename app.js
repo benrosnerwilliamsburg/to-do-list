@@ -5,26 +5,17 @@ if(storage !== null) {
     loadData(data);
     const id = data.length;
 }
+
 else {
     id = 0;
-    data = [];
+    data = {};
 }
 
-function newItem(todo, trash, id) {
-if (trash == true) {
-    return;
+function loadData(array) {
+    array.forEach(function(todo) {
+        newItem(todo.name, todo.trash, todo.id);
+    });
 }
-    const ul = document.getElementById("list");
-    const li = document.createElement("li");
-    li.appendChild(document.createTextNode("- " + todo));
-    li.setAttribute("id", id);
-    ul.appendChild(li);
-
-    todo = document.getElementById("input").value = "";
-
-    li.onclick = removeItem;
-}
-
 
 document.body.onkeyup = function(e) {
     if (e.keyCode == 13) {
@@ -35,11 +26,34 @@ document.body.onkeyup = function(e) {
             trash: false,
             id: id
         });
-        id = id + 1
+        localStorage.setItem("StorageKey", JSON.stringify(data));
        
     }
   };
 
-function removeItem(e) {
-    e.target.parentElement.removeChild(e.target);
+function newItem(todo, trash, id) {
+if (trash == true) {
+    return;
 }
+    const ul = document.getElementById("list");
+    const li = document.createElement("li");
+    li.appendChild(document.createTextNode("-" + todo));
+    li.setAttribute("id", id);
+    ul.appendChild(li);
+
+    todo = document.getElementById("input").value = "";
+
+    li.onclick = removeItem;
+}
+
+
+
+
+function removeItem(event) {
+    element = event.target;
+    element.remove();
+    data[elenent.id].trash = true;
+    localStorage.setItem("StorageKey", JSON.stringify(data));
+}
+
+
