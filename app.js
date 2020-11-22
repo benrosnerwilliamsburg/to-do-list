@@ -6,8 +6,10 @@ function newItem() {
     const ul = document.getElementById("list");
 
     const li = document.createElement("li");
-
     li.appendChild(document.createTextNode("- " + item));
+    ul.appendChild(li);
+
+    document.getElementById("input").value = "";
 }
 
 document.body.onkeyup = function(e) {
