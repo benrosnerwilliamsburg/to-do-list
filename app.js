@@ -3,13 +3,16 @@ function newItem() {
     let item = document.getElementById("input").value;
     console.log(item)
 
+    // store the unordered list as a variable (now we can refer to it as "ul")
     const ul = document.getElementById("list");
 
     const li = document.createElement("li");
-    li.appendChild(document.createTextNode("- " + item));
+    li.appendChild(document.createTextNode("- " + item)); // now put text in list item
     ul.appendChild(li);
 
-    document.getElementById("input").value = "";
+    document.getElementById("input").value = ""; // erase what is currently in todo list
+
+    li.onclick = removeItem; // run removeItem when the li is clicked
 }
 
 
