@@ -10,14 +10,17 @@ else {
     data = [];
 }
 
-function newItem() {
-    const item = document.getElementById("input").value;
+function newItem(todo, trash, id) {
+if (trash == true) {
+    return;
+}
     const ul = document.getElementById("list");
     const li = document.createElement("li");
-    li.appendChild(document.createTextNode("- " + item));
+    li.appendChild(document.createTextNode("- " + todo));
+    li.setAttribute("id", id);
     ul.appendChild(li);
 
-    document.getElementById("input").value = "";
+    todo = document.getElementById("input").value = "";
 
     li.onclick = removeItem;
 }
